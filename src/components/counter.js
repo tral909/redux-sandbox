@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions'
 
@@ -26,20 +25,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDisptachToProps = (dispatch) => {
-
-  const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
-
-  return {
-    inc,
-    dec,
-    rnd: () => {
-      const randomValue = Math.floor(Math.random()*10);
-      rnd(randomValue);
-    }
-  };
-};
-
 // функция connect - HOC создает компонент-обертку над Counter
 // и передает значения из store в компонент через mapStateToProps
-export default connect(mapStateToProps, mapDisptachToProps)(Counter);
+export default connect(mapStateToProps, actions)(Counter);
