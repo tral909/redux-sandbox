@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const Counter = ({ counter, inc, dec, rnd }) => {
   return (
@@ -17,4 +18,12 @@ const Counter = ({ counter, inc, dec, rnd }) => {
   );
 };
 
-export default Counter;
+const mapStateToProps = (state) => {
+  return {
+    counter: state
+  };
+};
+
+// функция connect - HOC создает компонент обертку над Counter
+// и передает значения из store в компонент через mapStateToProps
+export default connect(mapStateToProps)(Counter);
